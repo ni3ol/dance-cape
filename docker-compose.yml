@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  web:
+    build: ./web/
+    ports:
+      - '8080:8080'
+    volumes:
+      - './web/src:/usr/src/app/src'
+      - './web/package.json:/usr/src/app/package.json'
+      - './web/webpack.config.js:/usr/src/app/webpack.config.js'
+      - './web/yarn.lock:/usr/src/app/yarn.lock'
