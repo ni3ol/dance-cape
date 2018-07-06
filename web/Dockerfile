@@ -12,4 +12,4 @@ RUN yarn install --pure-lockfile
 
 COPY ./ /usr/src/app
 
-CMD ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0
+CMD ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --history-api-fallback
