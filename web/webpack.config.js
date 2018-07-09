@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const PATHS = {
+  src: path.resolve(__dirname, './src'),
   dist:  path.resolve(__dirname, 'dist'),
   bundle: 'main.js',
 }
@@ -54,7 +55,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      web: PATHS.src
+    },
   },
   plugins: [
    new HtmlWebpackPlugin({
