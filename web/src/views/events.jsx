@@ -1,9 +1,9 @@
 import React from 'react';
-import { Input, Button, Form, Container, Label} from 'semantic-ui-react'
+import { Link, Input, Button, Form, Container, Label} from 'semantic-ui-react'
 import EventList from 'web/component/EventList.jsx'
 
 
-export default class Events extends React.Component {
+export default class EventsView extends React.Component {
   constructor() {
     super();
     this.state = {

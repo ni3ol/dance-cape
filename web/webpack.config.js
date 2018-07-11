@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   src: path.resolve(__dirname, './src'),
+  img: path.resolve(__dirname, './src/images'),
   dist:  path.resolve(__dirname, 'dist'),
   bundle: 'main.js',
 }
@@ -57,7 +58,8 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      web: PATHS.src
+      web: PATHS.src,
+      images: PATH.img,
     },
   },
   plugins: [
