@@ -5,7 +5,8 @@ import DanceMenu from 'web/component/Menu.jsx'
 import { MainHeader } from 'web/component/Header.jsx'
 import Home from 'web/views/home.jsx'
 import StudiosView from 'web/views/studios.jsx'
-import EventsView from 'web/views/events.jsx'
+import EventsView from 'web/events/views/eventsView.jsx'
+import CreateEventView from 'web/events/views/createEventView.jsx'
 import LoginView from 'web/views/login.jsx'
 import SignupView from 'web/views/signup.jsx'
 import PartnerSearchView from 'web/views/partnersearch.jsx'
@@ -18,17 +19,17 @@ import { Switch, BrowserRouter, Route, browserHistory, indexRoute, Link } from '
 class App extends React.Component{
     render() {
       console.log(browserHistory)
-      const pierre = 4
       return (
         <BrowserRouter>
           <div>
             <MainHeader/>
             <DanceMenu/>
             <Switch>
-              <Route path="/studios" component={() => <StudiosView pierre={pierre}/>}/>
-              <Route path="/events" component={() => <EventsView/>}/>
               <Route path="/login" component={() => <LoginView/>}/>
               <Route path="/signup" component={() => <SignupView/>}/>
+              <Route path="/create-event" component={() => <CreateEventView/>}/>
+              <Route path="/studios" component={() => <StudiosView/>}/>
+              <Route path="/events" component={() => <EventsView/>}/>
               <Route path="/partner-search" component={() => <PartnerSearchView/>}/>
               <Route path="/shops" component={() => <ShopsView/>}/>
               <Route path="/marketplace" component={() => <MarketplaceView/>}/>

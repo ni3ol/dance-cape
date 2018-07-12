@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link, Input, Button, Form, Container, Label} from 'semantic-ui-react'
-import EventList from 'web/component/EventList.jsx'
 
-
-export default class EventsView extends React.Component {
+export default class CreateEventForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -18,21 +16,18 @@ export default class EventsView extends React.Component {
     this.setState({
       name: e.target.value
     });
-    console.log(this.state)
   }
 
   handleDateChange(e) {
     this.setState({
       date: e.target.value
     });
-    console.log(this.state)
   }
 
   handleVenueChange(e) {
     this.setState({
       venue: e.target.value
     });
-    console.log(this.state)
   }
 
   handleClick() {
@@ -47,13 +42,11 @@ export default class EventsView extends React.Component {
       this.setState({
         events
       });
-      console.log(this.state)
     }
   }
 
   render() {
     return(
-      <Container>
         <Form>
           <p>Add a dance related event here:</p>
           <Form.Field>
@@ -69,9 +62,7 @@ export default class EventsView extends React.Component {
             <Input placeholder="Venue" type="text" onChange={e => this.handleVenueChange(e)}/>
           </Form.Field>
           <Button primary type='submit' onClick={() => this.handleClick()}>Add event</Button>
-          <EventList events={this.state.events} />
         </Form>
-      </Container>
     );
   }
 }

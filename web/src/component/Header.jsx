@@ -8,7 +8,7 @@ export class MainHeader extends React.Component{
     render() {
       return (
         <Container textAlign='center'>
-          <Image src="http://www.steppintimepac.com/wp-content/uploads/sites/94/2012/10/Dance-Header.jpg"/>
+          {/* <Image src="http://www.steppintimepac.com/wp-content/uploads/sites/94/2012/10/Dance-Header.jpg"/> */}
           <Header size='huge' as={Link} to='/'>DanceCape</Header>
           <p>For all your dancing needs in the greater Cape Town region</p>
         </Container>
