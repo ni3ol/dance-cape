@@ -10,3 +10,9 @@ services:
       - './web/package.json:/usr/src/app/package.json'
       - './web/webpack.config.js:/usr/src/app/webpack.config.js'
       - './web/yarn.lock:/usr/src/app/yarn.lock'
+  backend:
+    build: ./backend/
+    ports:
+      - '5000:5000'
+    volumes:
+      - './backend:/usr/src/app'

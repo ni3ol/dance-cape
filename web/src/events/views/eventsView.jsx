@@ -1,7 +1,8 @@
 import React from 'react';
-import { Segment, Header, Dropdown, Popup, Item, Link, Input, Button, Form, Container, Label} from 'semantic-ui-react'
+import { Segment, Header, Dropdown, Popup, Item, Divider, Input, Button, Form, Container, Label} from 'semantic-ui-react'
 import CreateEventForm from 'web/events/components/createEventForm.jsx'
 import EventList from 'web/events/components/EventList.jsx'
+import EventService from 'web/events/service/EventService.jsx'
 
 
 export default class EventsView extends React.Component {
@@ -11,13 +12,19 @@ export default class EventsView extends React.Component {
       name: '',
       date: '',
       venue: '',
-      events: [
-        {name: 'Sokkie', date: '2019-09-02', venue: 'UCT'},
-        {name: 'Dinner and Dance', date: '2019-08-02', venue: 'Kelvin Grove'},
-        {name: 'Salsa', date: '2019-07-02', venue: 'La Parada'}
-      ],
+      events: [],
     }
   }
+
+  componentWillMount() {
+  this.fetchEvents();
+}
+
+  fetchEvents() {
+  EventService.getEvents().then((events) => {
+    this.setState({ events });
+  });
+}
 
   render() {
     const type = [
@@ -36,6 +43,9 @@ export default class EventsView extends React.Component {
       { key: 3, text: 'Southern Suburbs', value: 3 },
       { key: 4, text: 'Somerset West', value: 4 },
     ]
+
+    console.log(this.state.events)
+
     return(
       <Container>
         <Header>Events</Header>
@@ -45,6 +55,12 @@ export default class EventsView extends React.Component {
           <Dropdown text='Type' options={type}/>
           <Dropdown text='Area' options={area}/>
         </Segment>
+        <Header>This Weekend</Header>
+        <Divider/>
+        <EventList events={this.state.events} />
+        <Divider/>
+        <Header>MONDAY</Header>
+        <Divider/>
         <EventList events={this.state.events} />
       </Container>
     );
