@@ -24,30 +24,53 @@ class PersonList extends React.Component {
   }
 }
 
-// const FormExampleForm = () => (
-//   <Container>
-//   <Form>
-//     <Form.Field>
-//       <label>First Name</label>
-//       <input placeholder='First Name' />
-//     </Form.Field>
-//     <Form.Field>
-//       <label>Last Name</label>
-//       <input placeholder='Last Name' />
-//     </Form.Field>
-//     <Form.Field>
-//       <Checkbox label='I agree to the Terms and Conditions' />
-//     </Form.Field>
-//     <Button type='submit'>Submit</Button>
-//   </Form>
-// </Container>
-// )
+class Event extends React.Component {
+  render() {
+    return (
+      <div>
+        {this.props.name}
+        {this.props.danceStyle}
+        {this.props.location}
+        {this.props.date}
+        {this.props.time}
+        {this.props.description}
+      </div>
+    )
+  }
+};
+
+class EventList extends React.Component {
+  render() {
+    var salsa = <Event
+      name='La Parada Salsa'
+      danceStyle= 'salsa'
+      location='La Parada Bree Street'
+      date= '2019-01-10'
+      time= '20:00'
+      description= 'R50 entrance'/>
+    var sokkie = <Event
+      name='Opskop Sokkie'
+      danceStyle= 'sokkie'
+      location='Opskop Stellenbosch'
+      date= '2019-01-11'
+      time= '21:00'
+      description= 'R30 entrance'/>
+            
+    return (
+      <ul>
+        <li>{salsa}</li>
+        <li>{sokkie}</li>
+      </ul>
+    )
+  }  
+}
+
 
 export default class MenuExamplePointing extends Component {
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
+  handleEventClick = () => console.log('Event menu clicked');
   render() {
     const { activeItem } = this.state
 
@@ -56,12 +79,11 @@ export default class MenuExamplePointing extends Component {
         <Container textAlign='center'>
           <Header as='h1'>DanceCape</Header>
         </Container>
-        <Image centered src='https://static1.squarespace.com/static/5317e8cbe4b0ebfb9ed2542c/t/5756003b4c2f85409be15e8d/1465253948865/header-19.jpg?format=2500w' />
         <Menu pointing>
           <Menu.Item
             name='Events'
             active={activeItem === 'events'}
-            onClick={this.handleItemClick}
+            onClick={this.handleEventClick}
           />
           <Menu.Item
             name='Studios'
@@ -97,11 +119,6 @@ export default class MenuExamplePointing extends Component {
               active={activeItem === 'friends'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
-              name='Logout'
-              active={activeItem === 'friends'}
-              onClick={this.handleItemClick}
-            />
           </Menu.Menu>
         </Menu>
 
@@ -109,7 +126,6 @@ export default class MenuExamplePointing extends Component {
     )
   }
 }
-
 
 
 
