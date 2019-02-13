@@ -2,75 +2,24 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
 import { Input, Menu, Segment, Header, Container, Image } from 'semantic-ui-react'
-
-
-class Person extends React.Component {   // This is defining new component
-  render() {
-    return "Hello " + this.props.name;
-  }
-};
-
-class PersonList extends React.Component {
-  render() {
-    var nicol = <Person name="Nicol" />;
-    var pierre = <Person name="Pierre" />;
-
-    return (
-      <ul>
-        <li><Button primary>Hello</Button></li>
-        <li>{pierre}</li>
-      </ul>
-    );
-  }
-}
-
-class Event extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.name}
-        {this.props.danceStyle}
-        {this.props.location}
-        {this.props.date}
-        {this.props.time}
-        {this.props.description}
-      </div>
-    )
-  }
-};
-
-class EventList extends React.Component {
-  render() {
-    var salsa = <Event
-      name='La Parada Salsa'
-      danceStyle= 'salsa'
-      location='La Parada Bree Street'
-      date= '2019-01-10'
-      time= '20:00'
-      description= 'R50 entrance'/>
-    var sokkie = <Event
-      name='Opskop Sokkie'
-      danceStyle= 'sokkie'
-      location='Opskop Stellenbosch'
-      date= '2019-01-11'
-      time= '21:00'
-      description= 'R30 entrance'/>
-            
-    return (
-      <ul>
-        <li>{salsa}</li>
-        <li>{sokkie}</li>
-      </ul>
-    )
-  }  
-}
-
+import Login from './login.jsx'
+import EventList from './eventList.jsx'
+import StudioList from './studioList.jsx'
 
 export default class MenuExamplePointing extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: 'events' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  handleEventClick = () => console.log('Event menu clicked');
+  handleMenuItemClick = (activeItem) => this.setState({activeItem})
+
+  getPage = (activeItem) => {
+    switch(activeItem) {
+      case 'events': return <EventList/>;
+      case 'studios': return <StudioList/>;
+      case 'login': return <Login/>;
+      default: return <p>Unknown Page</p>;
+    }
+  }
+
   render() {
     const { activeItem } = this.state
 
@@ -83,55 +32,27 @@ export default class MenuExamplePointing extends Component {
           <Menu.Item
             name='Events'
             active={activeItem === 'events'}
-            onClick={this.handleEventClick}
+            onClick={() => this.handleMenuItemClick('events')}
           />
           <Menu.Item
             name='Studios'
             active={activeItem === 'studios'}
-            onClick={this.handleItemClick}
+            onClick={() => this.handleMenuItemClick('studios')}
           />
-          <Menu.Item
-            name='Forum'
-            active={activeItem === 'forum'}
-            onClick={this.handleItemClick}
+        <Menu.Item
+            name='Login'
+            active={activeItem === 'login'}
+            onClick={() => this.handleMenuItemClick('login')}
           />
-          <Menu.Item
-            name='Partner Search'
-            active={activeItem === 'partner-search'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='Dance Shops'
-            active={activeItem === 'shops'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='2nd hand store'
-            active={activeItem === 'second-shop'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Menu position='right'>
-            <Menu.Item>
-              <Input icon='search' placeholder='Search...' />
-            </Menu.Item>
-            <Menu.Item
-              name='Login'
-              active={activeItem === 'friends'}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
         </Menu>
-
+        <div>
+          {this.getPage(activeItem)}
+        </div>
       </div>
     )
   }
 }
 
-
-
-var plist = <PersonList />
 const form = <MenuExamplePointing />
-
-ReactDOM.render(form, document.getElementById("root"));
-
+ReactDOM.render(form, document.getElementById("root")); 
 module.hot.accept();
