@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Button, Form, Container, Label} from 'semantic-ui-react'
-import EventList from '../component/EventList.jsx'
+import EventList from 'web/component/EventList.jsx'
+
 
 export default class Events extends React.Component {
   constructor() {
@@ -35,9 +36,9 @@ export default class Events extends React.Component {
   }
 
   handleClick() {
-    let { name, date, venue, events } = this.state;
+    const { name, date, venue, events } = this.state;
     if (name !== '' && date !== '' && venue !== '') {
-      let event = {
+      const event = {
         name: name,
         date: date,
         venue: venue,
@@ -57,18 +58,18 @@ export default class Events extends React.Component {
           <p>Add a dance related event here:</p>
           <Form.Field>
             <Label>Name</Label>
-            <Input placeholder="Event name" type="text" onChange={this.handleNameChange.bind(this)}/>
+            <Input placeholder="Event name" type="text" onChange={e => this.handleNameChange(e)}/>
           </Form.Field>
           <Form.Field>
             <Label>Date</Label>
-            <Input placeholder="Date" type="date" onChange={this.handleDateChange.bind(this)}/>
+            <Input placeholder="Date" type="date" onChange={e => this.handleDateChange(e)} />
           </Form.Field>
           <Form.Field>
             <Label>Venue</Label>
-            <Input placeholder="Venue" type="text" onChange={this.handleVenueChange.bind(this)}/>
+            <Input placeholder="Venue" type="text" onChange={e => this.handleVenueChange(e)}/>
           </Form.Field>
-          <Button primary type='submit' onClick={this.handleClick.bind(this)}>Add event</Button>
-          <EventList events={this.state.events}/>
+          <Button primary type='submit' onClick={() => this.handleClick()}>Add event</Button>
+          <EventList events={this.state.events} />
         </Form>
       </Container>
     );

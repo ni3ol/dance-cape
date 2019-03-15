@@ -7,9 +7,9 @@ export default class EventList extends React.Component {
       this.props.events.map((event, i) => { return (
         <Segment key={i}>
           <List>
-            <List.Item key='event-name'>Event Name: {event.name}</List.Item>
-            <List.Item key='event-date'>Event Date: {event.date}</List.Item>
-            <List.Item key='event-venue'>Event Venue: {event.venue}</List.Item>
+            <List.Item>Event Name: {event.name}</List.Item>
+            <List.Item>Event Date: {event.date}</List.Item>
+            <List.Item >Event Venue: {event.venue}</List.Item>
           </List>
         </Segment>
       );}
